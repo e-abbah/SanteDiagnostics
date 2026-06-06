@@ -4,28 +4,32 @@
  */
 package santediagnosticsltd;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-/**
- *
- * @author Emmanuel Abbah
- */
-
-
-
-
+import java.util.Properties;
 
 public class DBConnection {
-    private static final String URL = "jdbc:postgresql://localhost:5432/sante_lims";
-    private static final String USER = "lims_user";
-    private static final String PASSWORD = "yourpassword";
     private static Connection connection = null;
 
     public static Connection getConnection() throws SQLException {
-        if (connection == null || connection.isClosed()) {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        try {
+            Properties props = new Properties();
+            InputStream input = DBConnection.class
+                .getClassLoader()
+                .getResourceAsStream("config.properties");
+            props.load(input);
+
+            String url = props.getProperty("db.url");
+            String user = props.getProperty("db.user");
+            String password = props.getProperty("db.password");
+
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection(url, user, password);
+            }
+        } catch (Exception e) {
+            System.err.println("DB connection failed: " + e.getMessage());
         }
         return connection;
     }
