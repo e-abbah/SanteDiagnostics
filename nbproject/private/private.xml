@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/config.properties</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/nbproject/project.properties</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/css/styles.css</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/Session.java</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/SanteDiagnosticsLtd.java</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/controllers/SignupController.java</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/controllers/SuperAdminDashboardController.java</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/EmailService.java</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/views/change-password.fxml</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/controllers/CustomerDashboardController.java</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/ChangePasswordController.java</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/views/login.fxml</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/views/signup.fxml</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/controllers/LoginController.java</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/views/super-admin-dashboard.fxml</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/DBConnection.java</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/AuditLogger.java</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/views/lab-attendant-dashboard.fxml</file>
+            <file>file:/C:/Users/Joshua/Downloads/SanteDiagnostics-main/SanteDiagnostics-main/src/santediagnosticsltd/views/customer-dashboard.fxml</file>
+        </group>
+    </open-files>
+</project-private>
