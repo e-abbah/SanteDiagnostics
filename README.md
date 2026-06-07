@@ -203,7 +203,7 @@ The login screen should appear. Use the default admin credentials below.
 
 | Role | Email | Password |
 |---|---|---|
-| Super Admin | `admin@sante.com` | `Admin@1234` |
+| Super Admin | `example@gmail.com` | `password` |
 | Lab Attendant | Created by Super Admin | Temp password (check console or email) |
 | Customer | Self-register via Signup | Password set during registration |
 
