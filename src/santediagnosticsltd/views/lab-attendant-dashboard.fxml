@@ -1,8 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="900.0"
-      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-    <Label text="Lab Attendant Dashboard - Coming Soon"
-           style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-</VBox>
+
+<!--
+    LAYOUT: Same BorderPane pattern as the Super Admin dashboard.
+    - top    → dark navbar (logo + welcome + logout)
+    - left   → sidebar (4 navigation buttons)
+    - center → contentPane (dynamically filled by controller)
+
+    The only visual difference from Super Admin is the role badge color —
+    we use green (#10b981) instead of gold to visually distinguish the role.
+-->
+<BorderPane prefHeight="700.0" prefWidth="1100.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="santediagnosticsltd.controllers.LabAttendantDashboardController">
+
+    <!-- ═══════════════════════════════════════════════
+         TOP NAVBAR
+         ═══════════════════════════════════════════════ -->
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="60" spacing="20"
+              style="-fx-background-color: #1a1a2e; -fx-padding: 0 30 0 30;">
+
+            <Label text="🏥 Sante Diagnostics"
+                   style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <!-- Green badge to distinguish Lab Attendant from Super Admin (gold) -->
+            <Label text="LAB ATTENDANT"
+                   style="-fx-text-fill: #10b981; -fx-font-size: 11px; -fx-font-weight: bold;
+                          -fx-background-color: rgba(16,185,129,0.15); -fx-background-radius: 4;
+                          -fx-padding: 3 8 3 8;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="welcomeLabel" text="Welcome"
+                   style="-fx-text-fill: white; -fx-font-size: 13px;"/>
+
+            <Button text="Logout" onAction="#handleLogout"
+                    style="-fx-background-color: #ef4444; -fx-text-fill: white;
+                           -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 6 14 6 14;"/>
+        </HBox>
+    </top>
+
+    <!-- ═══════════════════════════════════════════════
+         LEFT SIDEBAR
+         4 screens: Overview, Test Requests,
+                    Sample Tracking, Result Upload
+         ═══════════════════════════════════════════════ -->
+    <left>
+        <VBox prefWidth="210" spacing="4"
+              style="-fx-background-color: #f1f5f9; -fx-padding: 20 10 20 10;">
+
+            <Label text="DASHBOARD"
+                   style="-fx-text-fill: #9ca3af; -fx-font-size: 10px; -fx-font-weight: bold;
+                          -fx-padding: 0 0 6 8;"/>
+
+            <Button text="🏠  Overview" maxWidth="Infinity"
+                    onAction="#showHome" styleClass="primary-btn"/>
+
+            <Separator style="-fx-padding: 6 0 6 0;"/>
+
+            <Label text="OPERATIONS"
+                   style="-fx-text-fill: #9ca3af; -fx-font-size: 10px; -fx-font-weight: bold;
+                          -fx-padding: 0 0 6 8;"/>
+
+            <Button text="📋  Test Requests" maxWidth="Infinity"
+                    onAction="#showTestRequests"
+                    style="-fx-background-color: transparent; -fx-text-fill: #374151;
+                           -fx-cursor: hand; -fx-padding: 10; -fx-alignment: CENTER_LEFT;
+                           -fx-font-size: 13px;"/>
+
+            <Button text="🧫  Sample Tracking" maxWidth="Infinity"
+                    onAction="#showSampleTracking"
+                    style="-fx-background-color: transparent; -fx-text-fill: #374151;
+                           -fx-cursor: hand; -fx-padding: 10; -fx-alignment: CENTER_LEFT;
+                           -fx-font-size: 13px;"/>
+
+            <Button text="📤  Upload Result" maxWidth="Infinity"
+                    onAction="#showResultUpload"
+                    style="-fx-background-color: transparent; -fx-text-fill: #374151;
+                           -fx-cursor: hand; -fx-padding: 10; -fx-alignment: CENTER_LEFT;
+                           -fx-font-size: 13px;"/>
+
+            <Separator style="-fx-padding: 6 0 6 0;"/>
+
+            <Label text="ACCOUNTS"
+                   style="-fx-text-fill: #9ca3af; -fx-font-size: 10px; -fx-font-weight: bold;
+                          -fx-padding: 0 0 6 8;"/>
+
+            <!-- Lab Attendants can also create Customer accounts per the spec -->
+            <Button text="👤  Create Customer" maxWidth="Infinity"
+                    onAction="#showCreateCustomer"
+                    style="-fx-background-color: transparent; -fx-text-fill: #374151;
+                           -fx-cursor: hand; -fx-padding: 10; -fx-alignment: CENTER_LEFT;
+                           -fx-font-size: 13px;"/>
+
+        </VBox>
+    </left>
+
+    <!-- ═══════════════════════════════════════════════
+         CENTER CONTENT AREA
+         ═══════════════════════════════════════════════ -->
+    <center>
+        <Pane fx:id="contentPane" style="-fx-background-color: #f8f9fa;"/>
+    </center>
+
+</BorderPane>

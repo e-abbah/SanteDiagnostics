@@ -57,7 +57,7 @@ public class ChangePasswordController implements Initializable {
 
             // FIXED SQL: Changed 'is_first_login' to 'must_change_password' to match database and dashboard flags
             PreparedStatement stmt = conn.prepareStatement(
-                "UPDATE users SET password = ?, must_change_password = FALSE WHERE id = ?"
+                "UPDATE users SET password = ?, is_first_login = FALSE WHERE id = ?"
             );
             stmt.setString(1, hashedPassword);
             stmt.setInt(2, Session.getUserId());

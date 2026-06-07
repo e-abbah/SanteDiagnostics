@@ -137,6 +137,7 @@ public class LoginController implements Initializable {
 
         } catch (Exception e) {
             System.out.println("[DIAGNOSTIC] Driver Critical Crash -> " + e.getMessage());
+            e.printStackTrace();
             errorLabel.setText("Connection error: " + e.getMessage());
         }
     }

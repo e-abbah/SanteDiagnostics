@@ -24,6 +24,9 @@ public class SanteDiagnosticsLtd extends Application {
     }
 
     public static void main(String[] args) {
+        //System.out.println(org.mindrot.jbcrypt.BCrypt.hashpw("Admin@1234", org.mindrot.jbcrypt.BCrypt.gensalt()));
         launch(args);
     }
+    
+    
 }
