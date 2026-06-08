@@ -92,11 +92,16 @@ public class LoginController implements Initializable {
                 boolean isFirstLogin = rs.getBoolean("is_first_login");
                 String role = rs.getString("role");
 
-                System.out.println("[DIAGNOSTIC] User match found in DB!");
-                System.out.println("[DIAGNOSTIC] Hashed password saved inside your Table -> " + hashedPassword);
+//                System.out.println("[DIAGNOSTIC] User match found in DB!");
+//                System.out.println("[DIAGNOSTIC] Hashed password saved inside your Table -> " + hashedPassword);
 
                 if (BCrypt.checkpw(password, hashedPassword)) {
                     System.out.println("[DIAGNOSTIC] BCrypt Match Check Result: SUCCESS");
+                    
+                     if ("customer".equals(role) && !rs.getBoolean("is_email_verified")) {
+                         errorLabel.setText("Please verify your email before logging in.");
+                         return;
+                     }
                     
                     int id = rs.getInt("id");
                     String name = rs.getString("first_name") + " " + rs.getString("last_name");
@@ -112,6 +117,7 @@ public class LoginController implements Initializable {
                         navigateTo("/santediagnosticsltd/views/change-password.fxml");
                         return;
                     }
+                    
 
                     // Redirect based on role
                     switch (role) {

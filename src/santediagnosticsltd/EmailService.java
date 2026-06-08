@@ -127,4 +127,20 @@ public class EmailService {
             "Sante Diagnostics Administration.";
         return sendEmail(recipientEmail, subject, body);
     }
+    
+    public static boolean sendVerificationEmail(String recipientEmail,
+                                             String firstName,
+                                             String verificationCode) {
+    String subject = "Verify Your Sante Diagnostics Account";
+    String body =
+        "Dear " + firstName + ",\n\n" +
+        "Thank you for registering with Sante Diagnostics.\n\n" +
+        "Your email verification code is:\n\n" +
+        "        " + verificationCode + "\n\n" +
+        "Enter this code in the verification dialog to activate your account.\n\n" +
+        "If you did not create this account, please ignore this email.\n\n" +
+        "Best regards,\n" +
+        "Sante Diagnostics Team.";
+    return sendEmail(recipientEmail, subject, body);
+}
 }
