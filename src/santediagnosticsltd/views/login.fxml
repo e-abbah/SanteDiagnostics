@@ -70,9 +70,13 @@
 
                 <Label fx:id="errorLabel" text="" styleClass="error-label" maxWidth="Infinity"/>
 
-                <Label text="Forgot Password?"
+<!--                <Label text="Forgot Password?"
                        styleClass="link-label"
-                       style="-fx-font-size: 12px;" maxWidth="Infinity"/>
+                       style="-fx-font-size: 12px;" maxWidth="Infinity"/>-->
+                    <Label text="Forgot Password?"
+       styleClass="link-label"
+       onMouseClicked="#handleForgotPassword"
+       style="-fx-font-size: 12px; -fx-cursor: hand;" maxWidth="Infinity"/>
 
                 <Region prefHeight="5"/>
 

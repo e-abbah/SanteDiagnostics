@@ -51,15 +51,26 @@ public class EmailService {
         String senderPassword = config.getProperty("mail.password", "your-app-password");
         String smtpHost       = config.getProperty("mail.host",     "smtp.gmail.com");
         String smtpPort       = config.getProperty("mail.port",     "587");
+        System.out.println("[MAIL DEBUG] Sender: " + senderEmail + " | Host: " + smtpHost + " | Port: " + smtpPort);
         
       
 
-        Properties mailProps = new Properties();
-        mailProps.put("mail.smtp.auth",            "true");
-        mailProps.put("mail.smtp.starttls.enable", "true");
-        mailProps.put("mail.smtp.host",            smtpHost);
-        mailProps.put("mail.smtp.port",            smtpPort);
-        mailProps.put("mail.smtp.ssl.protocols",   "TLSv1.2");
+//        Properties mailProps = new Properties();
+//        mailProps.put("mail.smtp.auth",            "true");
+//        //mailProps.put("mail.smtp.starttls.enable", "true");
+//        mailProps.put("mail.smtp.host",            smtpHost);
+//        mailProps.put("mail.smtp.port",            smtpPort);
+//        mailProps.put("mail.smtp.ssl.protocols",   "TLSv1.2");
+Properties mailProps = new Properties();
+mailProps.put("mail.smtp.auth",                   "true");
+mailProps.put("mail.smtp.ssl.enable",             "true");
+mailProps.put("mail.smtp.host",                   smtpHost);
+mailProps.put("mail.smtp.port",                   smtpPort);
+mailProps.put("mail.smtp.ssl.protocols",          "TLSv1.2");
+mailProps.put("mail.smtp.ssl.trust",              "smtp.gmail.com");
+mailProps.put("mail.smtp.socketFactory.port",     "465");
+mailProps.put("mail.smtp.socketFactory.class",    "javax.net.ssl.SSLSocketFactory");
+mailProps.put("mail.smtp.socketFactory.fallback", "false");
 
         jakarta.mail.Session mailSession = jakarta.mail.Session.getInstance(mailProps,
             new Authenticator() {
@@ -139,6 +150,21 @@ public class EmailService {
         "        " + verificationCode + "\n\n" +
         "Enter this code in the verification dialog to activate your account.\n\n" +
         "If you did not create this account, please ignore this email.\n\n" +
+        "Best regards,\n" +
+        "Sante Diagnostics Team.";
+    return sendEmail(recipientEmail, subject, body);
+}
+    public static boolean sendPasswordResetEmail(String recipientEmail,
+                                              String firstName,
+                                              String resetCode) {
+    String subject = "Sante Diagnostics — Password Reset Code";
+    String body =
+        "Dear " + firstName + ",\n\n" +
+        "A password reset was requested for your account.\n\n" +
+        "Your reset code is:\n\n" +
+        "        " + resetCode + "\n\n" +
+        "Enter this code in the reset dialog to set a new password.\n\n" +
+        "If you did not request this, please ignore this email.\n\n" +
         "Best regards,\n" +
         "Sante Diagnostics Team.";
     return sendEmail(recipientEmail, subject, body);

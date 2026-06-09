@@ -13,18 +13,33 @@ import java.sql.PreparedStatement;
 
 public class AuditLogger {
 
+//    public static void log(int userId, String action, String affectedTable, int affectedRecordId) {
+//        String sql = "INSERT INTO audit_log (user_id, action, affected_table, affected_record_id) VALUES (?, ?, ?, ?)";
+//        try {
+//            Connection conn = DBConnection.getConnection();
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//            ps.setInt(1, userId);
+//            ps.setString(2, action);
+//            ps.setString(3, affectedTable);
+//            ps.setInt(4, affectedRecordId);
+//            ps.executeUpdate();
+//        } catch (Exception e) {
+//            System.err.println("Audit log failed: " + e.getMessage());
+//        }
+//    }
     public static void log(int userId, String action, String affectedTable, int affectedRecordId) {
-        String sql = "INSERT INTO audit_log (user_id, action, affected_table, affected_record_id) VALUES (?, ?, ?, ?)";
-        try {
-            Connection conn = DBConnection.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, userId);
-            ps.setString(2, action);
-            ps.setString(3, affectedTable);
-            ps.setInt(4, affectedRecordId);
-            ps.executeUpdate();
-        } catch (Exception e) {
-            System.err.println("Audit log failed: " + e.getMessage());
-        }
+    String sql = "INSERT INTO audit_log (user_id, action, affected_table, affected_record_id) VALUES (NULLIF(?, 0), ?, ?, ?)";
+    try {
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, userId);
+        ps.setString(2, action);
+        ps.setString(3, affectedTable);
+        ps.setInt(4, affectedRecordId);
+        ps.executeUpdate();
+    } catch (Exception e) {
+        System.err.println("Audit log failed: " + e.getMessage());
     }
+}
+    
 }

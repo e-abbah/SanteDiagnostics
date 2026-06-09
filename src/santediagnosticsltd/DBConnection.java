@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package santediagnosticsltd;
 
 import java.io.InputStream;
@@ -11,26 +7,32 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnection {
-    private static Connection connection = null;
 
-    public static Connection getConnection() throws SQLException {
+    private static String url;
+    private static String user;
+    private static String password;
+    private static boolean configured = false;
+
+    private static void loadConfig() {
+        if (configured) return;
         try {
             Properties props = new Properties();
             InputStream input = DBConnection.class
                 .getClassLoader()
                 .getResourceAsStream("config.properties");
             props.load(input);
-
-            String url = props.getProperty("db.url");
-            String user = props.getProperty("db.user");
-            String password = props.getProperty("db.password");
-
-            if (connection == null || connection.isClosed()) {
-                connection = DriverManager.getConnection(url, user, password);
-            }
+            url      = props.getProperty("db.url");
+            user     = props.getProperty("db.user");
+            password = props.getProperty("db.password");
+            configured = true;
         } catch (Exception e) {
-            System.err.println("DB connection failed: " + e.getMessage());
+            System.err.println("DB config load failed: " + e.getMessage());
         }
-        return connection;
+    }
+
+    public static Connection getConnection() throws SQLException {
+        loadConfig();
+        System.out.println("[DB DEBUG] Connecting to: " + url + " | User: " + user);
+        return DriverManager.getConnection(url, user, password);
     }
 }
